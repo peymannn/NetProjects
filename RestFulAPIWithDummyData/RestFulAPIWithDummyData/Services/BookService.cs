@@ -116,7 +116,7 @@ namespace RestFulAPIWithDummyData.Services
         public ServiceResponse<List<GetBookDto>> AddBook(AddUpdateBookDto newBook)
         {
             ServiceResponse<List<GetBookDto>> response = new ServiceResponse<List<GetBookDto>>();
-            response.Success = false;
+           
             try
             {
                 var book = mapper.Map<Book>(newBook);
@@ -136,10 +136,10 @@ namespace RestFulAPIWithDummyData.Services
         public ServiceResponse<GetBookDto> UpdateBook(AddUpdateBookDto updatedBook)
         {
             ServiceResponse<GetBookDto> response = new ServiceResponse<GetBookDto>();
-            response.Success = false;
+          
             try
             {
-                var book=GetBookById(updatedBook.ID);
+                var book= GetBookByID(updatedBook.ID);
                 mapper.Map(updatedBook,book);
                 response.Data = mapper.Map<GetBookDto>(book);
                 response.Success = true;

@@ -64,7 +64,7 @@ namespace RestFulAPIWithDummyData.Controllers
             var response = bookService.AddBook(value);
             if (response.Data == null)
                 return BadRequest(response);
-            return Created(Url.Action("GetSingle", new { id = response.Data[response.Data.Count - 1].ID })!, response); ;
+            return Created(Url.Action("Get", new { id = response.Data[response.Data.Count - 1].ID })!, response); ;
         }
 
         // PUT api/<BooksController>/
