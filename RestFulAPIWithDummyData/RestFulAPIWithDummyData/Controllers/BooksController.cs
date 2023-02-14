@@ -28,16 +28,16 @@ namespace RestFulAPIWithDummyData.Controllers
             return Ok(response);
         }
 
-        // GET api/<BooksController>/5
-        [HttpGet("{id}")]
-        public ActionResult<ServiceResponse<GetBookDto>> Get(int id)
+        // GET /api/Books/GetBookById/1
+        [HttpGet("GetBookById/{id}")]
+        public ActionResult<ServiceResponse<GetBookDto>> Get([FromRoute]int id) // FromRoute a gerek yok default from route zaten
         {
             var response = bookService.GetBookById(id);
             if (response.Data == null)
                 return NotFound(response);
             return Ok(response);
         }
-        // GET: api/<BooksController>/GetByName
+        // GET: api/Books/GetByName?name=x
         [HttpGet]
         [Route("GetByName")]
         public ActionResult<ServiceResponse<GetBookDto>> GetByName([FromQuery] string name)
@@ -47,7 +47,7 @@ namespace RestFulAPIWithDummyData.Controllers
                 return NotFound(response);
             return Ok(response);
         }
-
+        // GET: api/Books/GetByGenre? genre = 6
         [HttpGet]
         [Route("GetByGenre")]
         public ActionResult<ServiceResponse<GetBookDto>> GetByGenre([FromQuery] Genre genre)
@@ -70,6 +70,17 @@ namespace RestFulAPIWithDummyData.Controllers
         // PUT api/<BooksController>/
         [HttpPut]
         public ActionResult<ServiceResponse<List<GetBookDto>>> Put([FromBody] AddUpdateBookDto value)
+        {
+            var response = bookService.UpdateBook(value);
+            if (response.Data == null)
+                return NotFound(response);
+            return Ok(response);
+        }
+
+
+        // PUT api/<BooksController>/
+        [HttpPut("{id}")]
+        public ActionResult<ServiceResponse<List<GetBookDto>>> Put([FromRoute] int id,[FromBody] AddUpdateBookDto value)
         {
             var response = bookService.UpdateBook(value);
             if (response.Data == null)

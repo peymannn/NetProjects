@@ -15,7 +15,7 @@ namespace RestFulAPIWithDummyData.Services
         {
             this.mapper = mapper;
         }
-        private static List<Book> BookList = new List<Book>()
+        private static List<Book> bookList = new List<Book>()
         {
             new Book(){
              ID= 1,
@@ -44,8 +44,8 @@ namespace RestFulAPIWithDummyData.Services
             ServiceResponse<List<GetBookDto>> response = new ServiceResponse<List<GetBookDto>>();
             try
             {
-                response.Data = BookList.Select(x => mapper.Map<GetBookDto>(x)).ToList();
-                response.Success = true;
+                response.Data = bookList.Select(x => mapper.Map<GetBookDto>(x)).ToList();
+               
                 
             }catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace RestFulAPIWithDummyData.Services
             try
             {
                 response.Data = mapper.Map<GetBookDto>(GetBookByID(id));           
-                response.Success = true;
+               
              
             }
             catch (Exception ex)
@@ -81,8 +81,8 @@ namespace RestFulAPIWithDummyData.Services
 
             try
             {
-                response.Data = mapper.Map<List<GetBookDto>>(BookList.Where(x => x.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList());
-                response.Success = true;
+                response.Data = mapper.Map<List<GetBookDto>>(bookList.Where(x => x.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList());
+               
 
             }
             catch (Exception ex)
@@ -100,8 +100,8 @@ namespace RestFulAPIWithDummyData.Services
 
             try
             {
-                response.Data = mapper.Map<List<GetBookDto>>(BookList.Where(x => x.Genre==genre).ToList());
-                response.Success = true;
+                response.Data = mapper.Map<List<GetBookDto>>(bookList.Where(x => x.Genre==genre).ToList());
+               
 
             }
             catch (Exception ex)
@@ -120,9 +120,9 @@ namespace RestFulAPIWithDummyData.Services
             try
             {
                 var book = mapper.Map<Book>(newBook);
-                BookList.Add(book);
-                response.Success = true;
-                response.Data = mapper.Map<List<GetBookDto>>(BookList);
+                bookList.Add(book);
+               
+                response.Data = mapper.Map<List<GetBookDto>>(bookList);
             }
             catch (Exception ex)
             {
@@ -142,7 +142,7 @@ namespace RestFulAPIWithDummyData.Services
                 var book= GetBookByID(updatedBook.ID);
                 mapper.Map(updatedBook,book);
                 response.Data = mapper.Map<GetBookDto>(book);
-                response.Success = true;
+               
 
             }
             catch (Exception ex)
@@ -156,7 +156,7 @@ namespace RestFulAPIWithDummyData.Services
 
         private static Book GetBookByID(int id)
         {
-           return BookList.FirstOrDefault(x => x.ID == id);
+           return bookList.FirstOrDefault(x => x.ID == id);
         }
 
         public ServiceResponse<GetBookDto> DeleteBook(int id)
@@ -166,8 +166,8 @@ namespace RestFulAPIWithDummyData.Services
             try
             {
                 var book = GetBookByID(id);
-                BookList.Remove(book);
-                response.Success = true;
+                bookList.Remove(book);
+               
                 response.Data = mapper.Map<GetBookDto>(book);
             }
             catch (Exception ex)

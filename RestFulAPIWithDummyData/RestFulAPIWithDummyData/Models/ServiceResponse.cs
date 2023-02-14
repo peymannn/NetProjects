@@ -20,7 +20,7 @@ namespace RestFulAPIWithDummyData.Models
         }
 
         public TEntity? Data { get; set; }
-        public bool Success { get; set; }
+        public bool Success { get; set; } = true;
         public string Error { get; set; }
     }
 }
