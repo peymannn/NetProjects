@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestFulAPIWithEF.Data.Model
+namespace RestFulAPIWithEF.Base
 {
     public class OneOfTwoRoleRequiredValidationsAttribute : ValidationAttribute
     {

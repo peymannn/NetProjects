@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestFulAPIWithEF.Data.Model;
+using System;
 using System.Reflection;
 
 namespace RestFulAPIWithEF.Data.Context
@@ -11,11 +12,9 @@ namespace RestFulAPIWithEF.Data.Context
         {
 
         }
-
-
         // dbsets
         public DbSet<Account> Account { get; set; }
-
+        public DbSet<Person> Person { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
